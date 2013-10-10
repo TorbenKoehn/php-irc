@@ -16,11 +16,11 @@ Create a new bot instance (Or client, Bot actually has no functionality right no
 
 and connect it
 
-    $bot-]connect();
+    $bot->connect();
 
 You can listen to some events and react to them
 
-    $bot-]on( 'chat', function( $e, $bot ) {
+    $bot->on( 'chat', function( $e, $bot ) {
 
         $bot-]chat( $e-]channel, 'Heeeey, youve written something!!' );
     } );
@@ -30,13 +30,13 @@ Now open a console and fire this thing up
 
     $ php my-bot-file.php
 
-There are a shitload of possible events and a shitload of possible methods to call on the bot.
+There are a ton of possible events and methods to call on the bot.
 A tiny documentation of them can be found below.
 
 ## Status
 
 This thing may have bugs. Actually, it may have a shitload of bugs because I didn't test most of its features.
-When I know is, that it works. It can connect, it sends events, it can react to them.
+What I know is, that it works. It can connect, it sends events, it can react to them.
 It can communicate with your IRC server just fine.
 Everything else is missing development time.
 
