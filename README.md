@@ -22,7 +22,7 @@ You can listen to some events and react to them
 
     $bot->on( 'chat', function( $e, $bot ) {
 
-        $bot-]chat( $e-]channel, 'Heeeey, youve written something!!' );
+        $bot->chat( $e->channel, 'Heeeey, youve written something!!' );
     } );
 
 
@@ -68,34 +68,34 @@ Triggers permanently in the receive-loop. Actually, don't use this (unless you s
 
 ### message, message:[Command]
 Triggers, when the client receives any kind of message from the IRC server.
-You can access `$e-]message` to get the message instance, `$e-]raw` to get the raw message sent.
+You can access `$e->message` to get the message instance, `$e->raw` to get the raw message sent.
 
 Command is the actual command send by the IRC server.
 You can find them here: http://tools.ietf.org/html/rfc2812
 
 ### send, send:[Command], sent, sent:[Command]
 Triggers, when the client sends or sent a message (respectively)
-Provides `$e-]message` and `$e-]raw`
+Provides `$e->message` and `$e->raw`
 
 ### join, join:[Channel], join:[Nick], join:[Channel]:[Nick]
 Triggers, when someone joins a channel you're in (Including yourself).
-Provides `$e-]nick` and `$e-]channel` for you to work with.
+Provides `$e->nick` and `$e->channel` for you to work with.
 
 ### part, part:[Channel], part:[Nick], part:[Channel]:[Nick]
 Same as join, but for leaving a channel (/part)
-Provides `$e-]nick` and `$e-]channel`.
+Provides `$e->nick` and `$e->channel`.
 
 ### kick, kick:[Channel], kick:[Nick], kick:[Channel]:[Nick]
 Same as join/part, but for users getting kicked out of a channel
-Provides `$e-]nick` and `$e-]channel`.
+Provides `$e->nick` and `$e->channel`.
 
 ### notice, notice:[To], notice:[From], notice:[To]:[From]
 Received when someone sends a notice (Probably to yourself, so [To] is pretty useless now that I see it...)
-Provides `$e-]from`, `$e-]to` and `$e-]text`. Text is the raw string of text the user sent.
+Provides `$e->from`, `$e->to` and `$e->text`. Text is the raw string of text the user sent.
 
 ### chat, chat:[Channel], chat:[Channel]:[Nick]
 Received when someone sends something in a channel.
-Provides `$e-]from`, `$e-]channel` and `$e-]text`.
+Provides `$e->from`, `$e->channel` and `$e->text`.
 
 ### pm, pm:[To], pm:[To]:[From]
 Received when someone sends you a PM.
@@ -103,12 +103,12 @@ Same as notice actually.
 
 ### names, names:[Channel]
 Received when a NAMES request for a channel was finished.
-Provides `$e-]names` contains an object with a `names` and a `channel` property.
+Provides `$e->names` contains an object with a `names` and a `channel` property.
 Self-explanatory
 
 ### list
 Received when a LIST request is finished.
-Provides `$e-]list` which contains an associative array of channels (keys) and channel data (values).
+Provides `$e->list` which contains an associative array of channels (keys) and channel data (values).
 Channel data contains `userCount`, `topic` and `channel` for you to do awesome stuff with it.
 
 ### welcome
@@ -167,7 +167,7 @@ Does exactly what you think it does
 Automatically formats your desired message parameters and sends them to the IRC server.
 This is the main communication method.
 If you want to send something, send it with this!
-e.g. `$bot-]send( 'PRIVMSG', 'SomeOtherNick', 'Heey, this is a private message. Awesome, isn\'t it? ' )`
+e.g. `$bot->send( 'PRIVMSG', 'SomeOtherNick', 'Heey, this is a private message. Awesome, isn\'t it? ' )`
 
 ### sendPrefixed( string $prefix, string $command [, string $arg1 [, string $arg2 [, ...] ] ] )
 Some messages require a prefix which is your own user in most cases.
@@ -186,7 +186,7 @@ NAMES replies with some basic channel info, like the users that are in it and th
 
 ### list( [ mixed $channel[, string $server ] ] )
 Same as names(), but can also be called for the whole server.
-Just calling `$bot-]list()` will list all channels on the server.
+Just calling `$bot->list()` will list all channels on the server.
 
 ### chat( string $channel, string $message ), pm( string $channel, string $message )
 chat should be used for channels, pm for users, but actually, it doesn't matter at all.
